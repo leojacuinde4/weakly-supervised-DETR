@@ -16,4 +16,4 @@ RUN pip install sparsemax==0.1.9
 RUN pip install tensorboard==2.7.0
 
 RUN conda uninstall torchvision
-RUN conda install torchvision==0.10.0 -c pytorch
+RUN conda install torchvision==0.15.0 -c pytorch
