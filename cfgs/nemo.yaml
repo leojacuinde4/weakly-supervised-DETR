@@ -1,22 +1,22 @@
-train_imgs_dir: /home/project2reu/data/fgvc-aircraft-2013b/images
-train_anns: /home/project2reu/data/fgvc-aircraft-2013b/annotations/trainval.json
-val_imgs_dir: /home/project2reu/data/fgvc-aircraft-2013b/images
-val_anns: /home/project2reu/data/fgvc-aircraft-2013b/annotations/test.json
-test_imgs_dir: /home/project2reu/data/fgvc-aircraft-2013b/images
-test_anns: /home/project2reu/data/fgvc-aircraft-2013b/annotations/test.json
+train_imgs_dir: data/nemo/train_images
+train_anns: data/nemo/annotations/train.json
+val_imgs_dir: data/nemo/val_images
+val_anns: data/nemo/annotations/val.json
+test_imgs_dir: ""
+test_anns: ""
 infer_imgs_dir: ""
 save_dir: ""
 
 task: train
 
-batch_size: 2
+batch_size: 1
 class_agnostic_weights: ckpts/deformable-detr_fsod-800_class-agnostic_50epochs.pth
-classes: 100
+classes: 5
 dropout: 0.1
 joint_probability: True
 infer_display_thresh: 0.2
 nms_thresh: 0.3
-offset: 0
+offset: 1
 refresh_rate: 1
 resume_training: False
 resume_weights: False
@@ -24,7 +24,7 @@ sampler: False
 sparse: True
 supervised: False
 viz_test_batches: 20
-weights: ckpts/deformable-detr_fsod-800_50epochs.pth
+weights: "ckpts/deformable-detr_fsod-800_50epochs.pth"
 workers: 4
 
 lr_backbone: 2e-5
@@ -52,5 +52,5 @@ queries: 300
 
 accumulate_grad_batches: 2
 deterministic: True
-gpus: 2
+gpus: 0
 max_epochs: 30
