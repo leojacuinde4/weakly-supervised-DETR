@@ -1,7 +1,7 @@
 train_imgs_dir: /home/project2reu/data/nemo/train_images
-train_anns: /home/project2reu/data/nemo/annotations/train.json
+train_anns: /home/project2reu/data/nemo/annotations/annotation_train.json
 val_imgs_dir: /home/project2reu/data/nemo/val_images
-val_anns: /home/project2reu/data/nemo/annotations/val.json
+val_anns: /home/project2reu/data/nemo/annotations/annotation_val.json
 test_imgs_dir: ""
 test_anns: ""
 infer_imgs_dir: ""
