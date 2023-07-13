@@ -55,7 +55,7 @@ class WS_DETR(pl.LightningModule):
 
         # Saves class names for visualization.
         if args.classes == 2:
-            args.offset = 0
+            args.offset = 1
             self.class_names = ["no object", "object"]
         else:
             self.class_names = class_names
