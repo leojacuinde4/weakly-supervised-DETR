@@ -16,7 +16,7 @@ dropout: 0.1
 joint_probability: True
 infer_display_thresh: 0.2
 nms_thresh: 0.3
-offset: 2
+offset: 3
 refresh_rate: 1
 resume_training: False
 resume_weights: False
