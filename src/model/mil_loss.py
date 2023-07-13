@@ -101,7 +101,7 @@ def mil_loss(
     targets,
     joint_probability=None,
     objectness_scale=1,
-    offset=0,
+    offset=1,
     sparse=None,
 ):
     """Computes MIL score and label, then returns NLL loss with objectness."""
