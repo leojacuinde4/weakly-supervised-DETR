@@ -33,7 +33,7 @@ def postprocess(
 
     # Postprocessing from Deformable DETR; sorts boxes and preds by confidence.
     # Adds offset at the end (e.g., in case the labels are 1-indexed).
-    confs, topk_indexes = torch.topk(prob.view(prob.shape[0], -1), 300, dim=1)
+    confs, topk_indexes = torch.topk(prob.view(prob.shape[0], -1), 100, dim=1)
     topk_boxes = topk_indexes // prob.shape[2]
     preds = topk_indexes % prob.shape[2] + offset
 
