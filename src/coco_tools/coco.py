@@ -182,11 +182,12 @@ def coco_loader(args, task="train"):
 
     # Initializes a balanced random sampler for single-GPU training only.
     sampler = None
+    offset= 1
     shuffle = True if task == "train" else False
     if task == "train" and args.sampler:
         if args.gpus == 1:
             shuffle = None
-            weights_by_id = get_balanced_sampler_weights_by_id(labels, offset=1)
+            weights_by_id = get_balanced_sampler_weights_by_id(labels,offset)
             weights_by_idx = [weights_by_id[img_id] for img_id in dataset.ids]
             num_imgs = len(weights_by_idx)
             sampler = WeightedRandomSampler(weights_by_idx, num_imgs)
