@@ -363,7 +363,7 @@ class WS_DETR(pl.LightningModule):
             losses.append(i['loss'])
         
          # Gathers loss across GPUs.
-        loss= torch.stack(losses.mean())
+        loss= torch.stack(losses).mean()
         loss= self.all_gather(loss)
         loss= loss.mean().item()
 
