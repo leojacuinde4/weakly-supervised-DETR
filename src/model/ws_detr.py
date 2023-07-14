@@ -358,9 +358,15 @@ class WS_DETR(pl.LightningModule):
     def training_epoch_end(self, training_step_outputs):
         """Computes and logs epoch training loss."""
 
-        # Gathers loss across GPUs.
-        loss = torch.stack(training_step_outputs).mean()
-        loss = self.all_gather(loss).mean.item()
+        losses = []
+        for i in training_step_outputs:
+            losses.append(i['loss'])
+        
+         # Gathers loss across GPUs.
+        loss= torch.stack(losses.mean())
+        loss= self.all_gather(loss)
+        loss= loss.mean().item()
+
 
         if self.trainer.is_global_zero:
             try:
