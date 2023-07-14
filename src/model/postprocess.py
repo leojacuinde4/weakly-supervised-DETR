@@ -16,7 +16,7 @@ def postprocess(
     target_sizes,
     joint_probability=None,
     nms_thresh=None,
-    offset=0,
+    offset=1,
     sparse=None,
     supervised=None,
 ):

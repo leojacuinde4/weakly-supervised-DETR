@@ -45,7 +45,7 @@ def mil_score(outputs, joint_probability=None, sparse=None):
 
     return dets_sigmoid, scores
 
-def mil_label(batch_size, num_classes, targets, offset=0):
+def mil_label(batch_size, num_classes, targets, offset=1):
     """Gets the weak supervision label for MIL.
 
        There is a 1 in the class slot if there is
