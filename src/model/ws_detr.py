@@ -382,6 +382,20 @@ class WS_DETR(pl.LightningModule):
         imgs, targets = batch
         orig_sizes = torch.stack([t["orig_size"] for t in targets])
 
+        orig_sizes = []
+        for t in targets:
+             if "orig_size" in t and isinstance(t["orig_size"], (list, tuple)):
+                 orig_sizes.append(t["orig_size"])
+             else:
+                # Handle the case when "orig_size" is missing or not valid.
+                 # You can choose to skip the target or assign a default value.
+                # For example:
+                orig_sizes.append([0, 0])  # Default size if "orig_size" is missing.
+        # or
+        # continue  # Skip this target if "orig_size" is missing.
+
+
+
         # Plots predictions with ground-truth boxes.
         if idx < self.hparams.viz_test_batches:
             names = [str(t["image_id"].item()) + ".jpg" for t in targets]
