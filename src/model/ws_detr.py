@@ -380,7 +380,7 @@ class WS_DETR(pl.LightningModule):
         """Computes loss and postprocesses prediction."""
 
         imgs, targets = batch
-        orig_sizes = torch.stack([t["orig_size"] for t in targets])
+        #orig_sizes = torch.stack([t["orig_size"] for t in targets])
 
         orig_sizes = []
         for t in targets:
@@ -398,8 +398,21 @@ class WS_DETR(pl.LightningModule):
 
         # Plots predictions with ground-truth boxes.
         if idx < self.hparams.viz_test_batches:
-            names = [str(t["image_id"].item()) + ".jpg" for t in targets]
-            self.predict_helper(imgs, names, orig_sizes, targets=targets)
+            #names = [str(t["image_id"].item()) + ".jpg" for t in targets]
+
+            names = []
+            for t in targets:
+                if "image_id" in t and hasattr(t["image_id"], "item"):
+                    names.append(str(t["image_id"].item()) + ".jpg")
+                else:
+        # Handle the case when "image_id" is missing or not valid.
+        # You can choose to skip the target or assign a default value.
+        # For example:
+                 names.append("unknown.jpg")  # Default name if "image_id" is missing.
+        # or
+        # continue  # Skip this target if "image_id" is missing.
+
+        self.predict_helper(imgs, names, orig_sizes, targets=targets)
 
         outputs, loss = self.forward_with_loss(batch, idx)
 
