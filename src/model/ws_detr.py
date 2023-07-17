@@ -390,9 +390,9 @@ class WS_DETR(pl.LightningModule):
                 # Handle the case when "orig_size" is missing or not valid.
                  # You can choose to skip the target or assign a default value.
                 # For example:
-                orig_sizes.append([0, 0])  # Default size if "orig_size" is missing.
+                #orig_sizes.append([0, 0])  # Default size if "orig_size" is missing.
         # or
-        # continue  # Skip this target if "orig_size" is missing.
+                 continue  # Skip this target if "orig_size" is missing.
         orig_sizes = torch.stack(orig_sizes)
 
 
