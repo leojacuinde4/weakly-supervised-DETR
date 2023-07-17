@@ -155,6 +155,9 @@ def main(args):
         cats = list(val_loader.dataset.coco.cats.values())
         cats = sorted(cats, key=lambda x: x["id"])
         class_names = [c["name"] for c in cats]
+
+        #Added
+        class_names= [class_names[0], 'filler1', class_names[1], 'filler2', class_names[2]]
         
     model = load_model(args, coco_groundtruth, class_names=class_names)
     trainer = load_trainer(args)
