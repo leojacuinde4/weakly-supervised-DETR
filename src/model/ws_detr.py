@@ -393,7 +393,7 @@ class WS_DETR(pl.LightningModule):
                 orig_sizes.append([0, 0])  # Default size if "orig_size" is missing.
         # or
         # continue  # Skip this target if "orig_size" is missing.
-
+        orig_sizes = torch.stack(orig_sizes)
 
 
         # Plots predictions with ground-truth boxes.
