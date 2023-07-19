@@ -16,6 +16,7 @@ from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks.model_checkpoint import ModelCheckpoint
 from pytorch_lightning.callbacks.progress.tqdm_progress import TQDMProgressBar
 from pytorch_lightning.utilities.seed import seed_everything
+from pytorch_lightning.loggers import CSVLogger
 
 # Imports local packages.
 from args import parse_args
@@ -105,6 +106,7 @@ def load_trainer(args):
         save_last=True,
     )
 
+    csvlog = CSVLogger("logs")
     # Instantiates progress bar. Changing refresh rate is useful when
     # stdout goes to a logfile (e.g., on cluster). 1 is normal and 0 disables.
     progress_bar = TQDMProgressBar(refresh_rate=args.refresh_rate)
@@ -115,6 +117,7 @@ def load_trainer(args):
     # Instantiates PL Trainer using args.
     callbacks = [checkpointer, progress_bar]
     trainer = Trainer.from_argparse_args(args, callbacks=callbacks)
+    trainer.logger = csvlog
 
     return trainer
 
